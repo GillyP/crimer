@@ -4,7 +4,7 @@ import java.net.URL;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
@@ -27,13 +27,13 @@ public class GuiMain extends Application {
         primaryStage.setTitle("Crimer");
 
         myBrowser = new MyBrowser();
-        scene = new Scene(myBrowser, 800, 600);
+        scene = new Scene(myBrowser, 1200, 800);
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    class MyBrowser extends Region{
+    class MyBrowser extends StackPane{
 
         HBox toolbar;
 
