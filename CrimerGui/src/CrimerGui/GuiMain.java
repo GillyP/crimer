@@ -1,19 +1,14 @@
 package CrimerGui;
 
-import java.net.URL;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
 
 public class GuiMain extends Application {
 
     private Scene scene;
-    MyBrowser myBrowser;
+    GuiView guiView;
 
     /**
      * @param args the command line arguments
@@ -26,27 +21,12 @@ public class GuiMain extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Crimer");
 
-        myBrowser = new MyBrowser();
-        scene = new Scene(myBrowser, 1200, 800);
+        guiView = new GuiView();
+        scene = new Scene(guiView, 1000, 700);
 
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    class MyBrowser extends StackPane{
 
-        HBox toolbar;
-
-        WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
-
-        public MyBrowser(){
-
-            final URL urlGoogleMaps = getClass().getResource("GoogleHeatMap.html");
-            webEngine.load(urlGoogleMaps.toExternalForm());
-
-            getChildren().add(webView);
-
-        }
-    }
 }
