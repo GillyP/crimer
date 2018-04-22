@@ -1,0 +1,12 @@
+com.jayway.jsonpath
+com.jayway.jsonpath.internal
+com.jayway.jsonpath.internal.filter
+com.jayway.jsonpath.internal.function
+com.jayway.jsonpath.internal.function.json
+com.jayway.jsonpath.internal.function.latebinding
+com.jayway.jsonpath.internal.function.numeric
+com.jayway.jsonpath.internal.function.text
+com.jayway.jsonpath.internal.path
+com.jayway.jsonpath.spi.cache
+com.jayway.jsonpath.spi.json
+com.jayway.jsonpath.spi.mapper
