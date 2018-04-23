@@ -49,7 +49,7 @@ public class ModelMain {
         //ArrayList<String> classifications = new ArrayList<>();
 
 
-        Scanner inFile = new Scanner(new FileReader("crimer/data/crimer.arff"));
+        Scanner inFile = new Scanner(new FileReader("crimer/data/weka/crimer.arff"));
 
         while(inFile.hasNextLine()) {
             String nextToken = inFile.nextLine();
@@ -168,11 +168,11 @@ public class ModelMain {
         //PrintWriter crimer = arffGenerator();
 
         BufferedReader breader = null;
-        breader = new BufferedReader(new FileReader("crimer/data/ground_truth.arff"));
+        breader = new BufferedReader(new FileReader("crimer/data/weka/ground_truth.arff"));
         trainSet = new Instances(breader);
         trainSet.setClassIndex(trainSet.numAttributes() - 1);
 
-        breader = new BufferedReader(new FileReader("crimer/data/crimer.arff"));
+        breader = new BufferedReader(new FileReader("crimer/data/weka/crimer.arff"));
         testSet = new Instances(breader);
         testSet.setClassIndex(testSet.numAttributes() - 1);
 
@@ -188,7 +188,7 @@ public class ModelMain {
             labeled.instance(i).setClassValue(clsLabel);
         }
 
-        BufferedWriter writer = new BufferedWriter(new FileWriter("crimer/data/crimer.arff"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("crimer/data/weka/crimer.arff"));
         writer.write(labeled.toString());
 
         writer.close();
@@ -199,7 +199,7 @@ public class ModelMain {
     public void crimerArff() throws IOException{
 
         //File crimerFile = new File("C:/Users/Gil Platt/Desktop/crimerFile.arff", "UTF-8");
-        PrintWriter crimeWriter = new PrintWriter("crimer/data/crimer.arff", "UTF-8");
+        PrintWriter crimeWriter = new PrintWriter("crimer/data/weka/crimer.arff", "UTF-8");
         crimeWriter.write("@RELATION crimer");
         crimeWriter.println();
         crimeWriter.write("@ATTRIBUTE crimetype string");
