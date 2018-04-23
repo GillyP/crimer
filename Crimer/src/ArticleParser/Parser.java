@@ -68,8 +68,7 @@ public class Parser {
                 "intoxication%22%20OR%20%22aiding%20and%20abetting%22%20OR%20homicide%20OR%20manslaughter%20OR%20assault%20OR%20" +
                 "battery%20OR%20larsony%20OR%20%22hate%20crime%22%20OR%20vandalism%20OR%20perjury%20OR%20trespass%20OR%20speeding%20" +
                 "OR%20%22breaking%20and%20entering%22%20OR%20%22child%20porn%22%20OR%20molest%20OR%20%22sexual%20assault%22)" +
-                "&from=" +
-                date +
+                "&from=" + date +
                 "&sortBy=relevancy" +
                 "&language=en" +
                 "&pageSize=100" +

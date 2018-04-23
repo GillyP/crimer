@@ -70,13 +70,12 @@ public class Launcher extends Application {
             fromDate = inputFromDate.getText();
             try {
                 generateJS(location, fromDate);
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         } else {
             System.out.println("User cancelled / closed the dialog, result = " + result);
+            System.exit(-1);
         }
     }
 
@@ -84,10 +83,11 @@ public class Launcher extends Application {
 
         Parser parse = new Parser(location, fromDate);
         List<String> headlines = parse.getHeadlines();
+
         CrimeClassifier crimer = new CrimeClassifier(headlines);
+        List<String> classifications = crimer.getClassifications();
 
         List<List<String>> addresses = parse.getAddresses();
-        List<String> classifications = crimer.getClassifications();
 
         PrintWriter writer = new PrintWriter("crimer/src/CrimerGui/crime_data.js", "UTF-8");
 
@@ -155,7 +155,7 @@ public class Launcher extends Application {
         writer.println(purple.toString());
 
         StringBuilder ticker = new StringBuilder();
-        for (String headline : headlines) {
+        for (Object headline : headlines) {
             ticker.append(headline);
             ticker.append(" · ");
         }
@@ -163,7 +163,7 @@ public class Launcher extends Application {
         writer.print("var tickerText = \"" + ticker.toString().replace("\"", "\\\"").toUpperCase() + "\";");
         writer.close();
 
-        launchCrimer();
+        launch();
     }
 
     private static void writeGeolocation(int index, StringBuilder color, List<List<String>> addresses, PrintWriter writer) throws IOException {
@@ -185,9 +185,9 @@ public class Launcher extends Application {
         }
     }
 
-    private static void launchCrimer() {
-        launch();
-    }
+//    private static void launchCrimer() {
+//        launch();
+//    }
 
     @Override
     public void start(Stage primaryStage) {
