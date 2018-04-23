@@ -11,6 +11,9 @@ import Weka.CrimeClassifier;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.apache.http.client.fluent.Request;
 
 import javax.swing.*;
@@ -18,10 +21,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-public class Launcher {
+public class Launcher extends Application {
 
     private static String location;
     private static String fromDate;
+    private Scene scene;
+    GuiView guiView;
+
 
     public static void main(String[] args) {
         // Schedule a job for the event-dispatching thread:
@@ -81,7 +87,7 @@ public class Launcher {
         CrimeClassifier crimer = new CrimeClassifier(headlines);
 
         List<List<String>> addresses = parse.getAddresses();
-        List<String> classifications = crimer.getClassifications(); // Requires weka update
+        List<String> classifications = crimer.getClassifications();
 
         PrintWriter writer = new PrintWriter("crimer/src/CrimerGui/crime_data.js", "UTF-8");
 
@@ -99,15 +105,15 @@ public class Launcher {
                 "    return [\n" +
                 "        new google.maps.LatLng(latCoord, longCoord),\n");
 
-        blue.append("function getGreenPoints() {\n" +
+        blue.append("function getBluePoints() {\n" +
                 "    return [\n" +
                 "        new google.maps.LatLng(latCoord, longCoord),\n");
 
-        yellow.append("function getGreenPoints() {\n" +
+        yellow.append("function getYellowPoints() {\n" +
                 "    return [\n" +
                 "        new google.maps.LatLng(latCoord, longCoord),\n");
 
-        purple.append("function getGreenPoints() {\n" +
+        purple.append("function getPurplePoints() {\n" +
                 "    return [\n" +
                 "        new google.maps.LatLng(latCoord, longCoord),\n");
 
@@ -147,11 +153,11 @@ public class Launcher {
                 "    ];\n" +
                 "}\n");
 
-        writer.println(red.toString() + "\n");
-        writer.println(green.toString() + "\n");
-        writer.println(blue.toString() + "\n");
-        writer.println(yellow.toString() + "\n");
-        writer.println(purple.toString() + "\n");
+        writer.println(red.toString());
+        writer.println(green.toString());
+        writer.println(blue.toString());
+        writer.println(yellow.toString());
+        writer.println(purple.toString());
 
         StringBuilder ticker = new StringBuilder();
         for (String headline : headlines) {
@@ -161,25 +167,39 @@ public class Launcher {
 
         writer.print("var tickerText = \"" + ticker.toString().replace("\"", "\\\"").toUpperCase() + "\";");
         writer.close();
+
+        launchCrimer();
     }
 
     private static void writeGeolocation(int index, StringBuilder color, List<List<String>> addresses, PrintWriter writer) throws IOException {
         for (int j = 0; j < addresses.get(index).size(); j++) {
-            String request = Request.Get("https://maps.googleapis.com/maps/api/geocode/json?address="
-                    + addresses.get(index).get(j).replace(" ", "+") +
-                    "&key=AIzaSyB06sE1R5EMBA4ysw5m-Gmk3PSlnenKaYE")
-                    .connectTimeout(1000)
-                    .socketTimeout(1000)
-                    .execute().returnContent().asString();
-            Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(request);
-
             try {
+                String request = Request.Get("https://maps.googleapis.com/maps/api/geocode/json?address="
+                        + addresses.get(index).get(j).replace(" ", "+") +
+                        "&key=AIzaSyB06sE1R5EMBA4ysw5m-Gmk3PSlnenKaYE")
+                        .connectTimeout(1000)
+                        .socketTimeout(1000)
+                        .execute().returnContent().asString();
+                Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(request);
                 String lat = JsonPath.read(jsonString, "results[0].geometry.location.lat").toString();
                 String lng = JsonPath.read(jsonString, "results[0].geometry.location.lng").toString();
                 color.append("        new google.maps.LatLng(" + lat + ", " + lng + "),\n");
-            } catch (PathNotFoundException e) {
+            } catch (IllegalArgumentException | PathNotFoundException e) {
                 // Do something if the address fails?
             }
         }
+    }
+
+    private static void launchCrimer() {
+        launch();
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("Crimer");
+        guiView = new GuiView();
+        scene = new Scene(guiView, 1000, 700);
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
