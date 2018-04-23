@@ -1,10 +1,25 @@
+/**
+ * Launches crimer
+ *
+ * @author Justin Varley, Alexander "Lex" Adams
+ */
+
 package CrimerGui;
 
 import javax.swing.*;
 
 public class Launcher {
-    private static void createAndShowGUI()
-    {
+
+    private static String location;
+    private static String fromDate;
+
+    public static void main(String[] args) {
+        //Schedule a job for the event-dispatching thread:
+        //creating and showing this application's GUI.
+        SwingUtilities.invokeLater(Launcher::createAndShowGUI);
+    }
+
+    private static void createAndShowGUI() {
         //Use the Java look and feel.
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
@@ -22,34 +37,29 @@ public class Launcher {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JDialog.setDefaultLookAndFeelDecorated(true);
 
-        JTextField location = new JTextField();
-        JTextField fromDate = new JTextField();
+        JTextField inputLocation = new JTextField();
+        JTextField inputFromDate = new JTextField();
 
-        final JComponent[] inputs = new JComponent[] {
+        final JComponent[] inputs = new JComponent[]{
                 new JLabel("Location:"),
-                location,
+                inputLocation,
                 new JLabel("Date to start from:"),
-                fromDate,
+                inputFromDate,
         };
 
-        int result = JOptionPane.showConfirmDialog(null, inputs,
-                "Crimer", JOptionPane.DEFAULT_OPTION);
+        int result = JOptionPane.showConfirmDialog(null, inputs, "Crimer", JOptionPane.DEFAULT_OPTION);
 
-        if (result == JOptionPane.OK_OPTION)
-        {
-            System.out.println("You entered " +
-                    location.getText() + ", " +
-                    fromDate.getText());
-        } else
-        {
+        if (result == JOptionPane.OK_OPTION) {
+            location = inputLocation.getText();
+            fromDate = inputFromDate.getText();
+            generateJS(location, fromDate);
+        }
+        else {
             System.out.println("User cancelled / closed the dialog, result = " + result);
         }
     }
 
-    public static void main(String[] args)
-    {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
-        javax.swing.SwingUtilities.invokeLater(Launcher::createAndShowGUI);
+    private static void generateJS(String location, String fromDate) {
+        // Logic for JS generation goes here.
     }
 }
