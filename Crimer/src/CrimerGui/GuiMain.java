@@ -26,7 +26,7 @@ public class GuiMain extends Application {
         Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(request);
         String lat = JsonPath.read(jsonString, "results[0].geometry.location.lat").toString();
         String lng = JsonPath.read(jsonString, "results[0].geometry.location.lng").toString();
-        PrintWriter writer = new PrintWriter("crimer/src/CrimerGui/latlong.js", "UTF-8");
+        PrintWriter writer = new PrintWriter("crimer/src/CrimerGui/crime_data.js", "UTF-8");
         writer.println("var latCoord = " + lat + ";");
         writer.println("var longCoord = " + lng + ";");
         writer.close();
