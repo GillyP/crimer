@@ -188,6 +188,7 @@ public class Parser {
                 "|Vly|Valleys|Vlys|Viaduct|Via|View|Vw|Views|Vws|Village|Vlg|Villages|Vlgs|Ville|Vl|Vista|Vis|Walk|Walks|Wall|Way" +
                 "|Ways|Well|Wl|Wells|Wls)[\\p{Punct} ]");
 
+        addresses = new ArrayList<>();
         for (String url : urls) {
             List<String> tempAddress = new ArrayList<>();
             try {
