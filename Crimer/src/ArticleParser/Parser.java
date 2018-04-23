@@ -1,4 +1,10 @@
-package boilerpipe;
+/**
+ * A parser that retrieves headlines and addresses for a location
+ *
+ * @author Alexander "Lex" Adams
+ */
+
+package ArticleParser;
 
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
@@ -15,24 +21,37 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * A text extractor using Boilerpipe
- */
-
-public class Boilerpipe {
-
-    private List<String> urls = new ArrayList<>();
-    private List<String> headlines = new ArrayList<>();
-    private List<List<String>> addresses = new ArrayList<>();
-    private int numArticles;
-    private int errorCount;
+public class Parser {
 
     /**
-     * @param location A city location
-     * @param date     A starting date
-     * @throws IOException When http request fails
+     * A list of URLs
      */
-    public Boilerpipe(String location, String date) throws IOException {
+    private List<String> urls;
+    /**
+     * A list of headlines
+     */
+    private List<String> headlines;
+    /**
+     * A list of addresses
+     */
+    private List<List<String>> addresses;
+    /**
+     * The total number of articles available for parsing
+     */
+    private int numArticles;
+    /**
+     * The number of errors encountered while extracting text
+     */
+    private int numErrors;
+
+    /**
+     * Creates a parser object that holds data related to crime
+     *
+     * @param location A location
+     * @param date     A starting date
+     * @throws IOException When the http request fails
+     */
+    public Parser(String location, String date) throws IOException {
 
         location = location.replace(" ", "%20");
 
@@ -65,6 +84,19 @@ public class Boilerpipe {
     }
 
     /**
+     * Creates the default parser object that holds data related to crime
+     */
+    public Parser() {
+        urls = new ArrayList<>();
+        headlines = new ArrayList<>();
+        addresses = new ArrayList<>();
+        numArticles = 0;
+        numErrors = 0;
+    }
+
+    /**
+     * Parses a JSON string for URLs and headlines
+     *
      * @param jsonInput A string containing JSON
      */
     private void parseJSON(String jsonInput) {
@@ -77,14 +109,14 @@ public class Boilerpipe {
     /**
      * @return A list of URLs
      */
-    public List getURLs() {
+    public List<String> getURLs() {
         return urls;
     }
 
     /**
      * @return A list of headlines
      */
-    public List getHeadlines() {
+    public List<String> getHeadlines() {
         return headlines;
     }
 
@@ -103,12 +135,18 @@ public class Boilerpipe {
     }
 
     /**
-     * @throws MalformedURLException         When the URL is malformed
-     * @throws BoilerpipeProcessingException When there are errors in the text processing
+     * @return The number of errors encountered while extracting text
+     */
+    public int getNumErrors() {
+        return numErrors;
+    }
+
+    /**
+     * A helper method that extracts addresses from text using regex
      */
     private void extractAddresses() {
         // Regex to match street addresses within article text
-        final Pattern regex = Pattern.compile("\\d\\w* .{1,40} (ALLEY|ALY|ANEX|ANX|ARCADE|ARC|AVENUE|AVE|BAYOU|BYU|BEACH|BCH" +
+        final Pattern regex = Pattern.compile("\\d\\w* .{5,40} (ALLEY|ALY|ANEX|ANX|ARCADE|ARC|AVENUE|AVE|BAYOU|BYU|BEACH|BCH" +
                 "|BEND|BND|BLUFF|BLF|BLUFFS|BLFS|BOTTOM|BTM|BOULEVARD|BLVD|BRANCH|BR|BRIDGE|BRG|BROOK|BRK|BROOKS|BRKS" +
                 "|BURG|BG|BURGS|BGS|BYPASS|BYP|CAMP|CP|CANYON|CYN|CAPE|CPE|CAUSEWAY|CSWY|CENTER|CTR|CENTERS|CTRS|CIRCLE" +
                 "|CIR|CIRCLES|CIRS|CLIFF|CLF|CLIFFS|CLFS|CLUB|CLB|COMMON|CMN|COMMONS|CMNS|CORNER|COR|CORNERS|CORS|COURSE" +
@@ -158,16 +196,18 @@ public class Boilerpipe {
                     tempAddress.add(regexMatcher.group());
                 }
             } catch (MalformedURLException | BoilerpipeProcessingException | IllegalCharsetNameException e) {
-                errorCount++;
+                numErrors++;
             }
             addresses.add(tempAddress);
         }
     }
 
     /**
-     * @param URL A URL for use in boilerpipe
-     * @return The article's text
-     * @throws BoilerpipeProcessingException When there are errors in the text processing
+     * A helper method that extracts text from news articles using boilerpipe
+     *
+     * @param URL A news article to have text extracted from
+     * @return The text of the article
+     * @throws BoilerpipeProcessingException When the text fails to process
      * @throws MalformedURLException         When the URL is malformed
      */
     private String extractText(String URL) throws BoilerpipeProcessingException, MalformedURLException {

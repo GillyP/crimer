@@ -1,4 +1,10 @@
-package boilerpipe;
+/**
+ * A demo of the parser
+ *
+ * @author Alexander "Lex" Adams
+ */
+
+package ArticleParser;
 
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 
@@ -7,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
-public class BoilerpipeDemo {
+public class ParserDemo {
 
     public static void main(String[] args) throws IOException, BoilerpipeProcessingException {
 
@@ -19,7 +25,7 @@ public class BoilerpipeDemo {
         System.out.print("Enter a starting date (YYYY-MM-DD): ");
         String date = sc.nextLine();
 
-        Boilerpipe demoPipe = new Boilerpipe(city, date);
+        Parser demoPipe = new Parser(city, date);
 
         System.out.println();
 
