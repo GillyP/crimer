@@ -93,8 +93,11 @@ public class CrimeClassifier {
         crimeWriter.println();
 
         for (String headline : headlines)
+            try {
             crimeWriter.format("'%s',?%n", headline.replace("'", "\\'"));
-
+            } catch (NullPointerException e) {
+            crimeWriter.println("'ERROR: NULL HEADLINE',?");
+        }
         crimeWriter.close();
     }
 }
