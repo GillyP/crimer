@@ -7,6 +7,7 @@
 package CrimerGui;
 
 import ArticleParser.Parser;
+import Weka.CrimeClassifier;
 import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import com.jayway.jsonpath.PathNotFoundException;
@@ -65,19 +66,22 @@ public class Launcher {
                 generateJS(location, fromDate);
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         } else {
             System.out.println("User cancelled / closed the dialog, result = " + result);
         }
     }
 
-    private static void generateJS(String location, String fromDate) throws IOException {
+    private static void generateJS(String location, String fromDate) throws Exception {
 
         Parser parse = new Parser(location, fromDate);
+        List<String> headlines = parse.getHeadlines();
+        CrimeClassifier crimer = new CrimeClassifier(headlines);
 
         List<List<String>> addresses = parse.getAddresses();
-        List<String> classifications = weka.getClassifications(); // Requires weka update
-        List<String> headlines = parse.getHeadlines();
+        List<String> classifications = crimer.getClassifications(); // Requires weka update
 
         PrintWriter writer = new PrintWriter("crimer/src/CrimerGui/crime_data.js", "UTF-8");
 
