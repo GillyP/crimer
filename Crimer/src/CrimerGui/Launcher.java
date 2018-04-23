@@ -1,7 +1,7 @@
 /**
  * Launches crimer
  *
- * @author Justin Varley, Alexander "Lex" Adams
+ * @author Alexander "Lex" Adams, Justin Varley
  */
 
 package CrimerGui;
@@ -15,9 +15,6 @@ import org.apache.http.client.fluent.Request;
 import javax.swing.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class Launcher {
@@ -26,13 +23,13 @@ public class Launcher {
     private static String fromDate;
 
     public static void main(String[] args) {
-        //Schedule a job for the event-dispatching thread:
-        //creating and showing this application's GUI.
+        // Schedule a job for the event-dispatching thread:
+        // creating and showing this application's GUI
         SwingUtilities.invokeLater(Launcher::createAndShowGUI);
     }
 
     private static void createAndShowGUI() {
-        //Use the Java look and feel.
+        // Use the Java look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         } catch (ClassNotFoundException e) {
@@ -45,7 +42,7 @@ public class Launcher {
             e.printStackTrace();
         }
 
-        //Make sure we have nice window decorations.
+        // Make sure we have nice window decorations
         JFrame.setDefaultLookAndFeelDecorated(true);
         JDialog.setDefaultLookAndFeelDecorated(true);
 
@@ -79,39 +76,78 @@ public class Launcher {
         Parser parse = new Parser(location, fromDate);
 
         List<List<String>> addresses = parse.getAddresses();
+        List<String> classifications = weka.getClassifications(); // Requires weka update
         List<String> headlines = parse.getHeadlines();
 
         PrintWriter writer = new PrintWriter("crimer/src/CrimerGui/crime_data.js", "UTF-8");
 
-        writer.println("function getINSERTCOLORHEREPoints() {\n" +
+        StringBuilder red = new StringBuilder();
+        StringBuilder green = new StringBuilder();
+        StringBuilder blue = new StringBuilder();
+        StringBuilder yellow = new StringBuilder();
+        StringBuilder purple = new StringBuilder();
+
+        red.append("function getRedPoints() {\n" +
                 "    return [\n" +
-                "        new google.maps.LatLng(latCoord, longCoord),");
+                "        new google.maps.LatLng(latCoord, longCoord),\n");
 
-        for (int i = 0; i < addresses.size(); i++) {
-            for (int j = 0; j < addresses.get(i).size(); j++) {
-                String request = Request.Get("https://maps.googleapis.com/maps/api/geocode/json?address="
-                        + addresses.get(i).get(j).replace(" ", "+") +
-                        "&key=AIzaSyB06sE1R5EMBA4ysw5m-Gmk3PSlnenKaYE")
-                        .connectTimeout(1000)
-                        .socketTimeout(1000)
-                        .execute().returnContent().asString();
-                Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(request);
+        green.append("function getGreenPoints() {\n" +
+                "    return [\n" +
+                "        new google.maps.LatLng(latCoord, longCoord),\n");
 
-                try {
-                    String lat = JsonPath.read(jsonString, "results[0].geometry.location.lat").toString();
-                    String lng = JsonPath.read(jsonString, "results[0].geometry.location.lng").toString();
-                    writer.println("        new google.maps.LatLng(" + lat + ", " + lng + "),");
-                } catch (PathNotFoundException e) {
-                    // Do something if the address fails?
-                }
+        blue.append("function getGreenPoints() {\n" +
+                "    return [\n" +
+                "        new google.maps.LatLng(latCoord, longCoord),\n");
+
+        yellow.append("function getGreenPoints() {\n" +
+                "    return [\n" +
+                "        new google.maps.LatLng(latCoord, longCoord),\n");
+
+        purple.append("function getGreenPoints() {\n" +
+                "    return [\n" +
+                "        new google.maps.LatLng(latCoord, longCoord),\n");
+
+        for (int i = 0; i < classifications.size(); i++) {
+            switch (classifications.get(i)) {
+                case "financial":
+                    writeGeolocation(i, red, addresses, writer);
+                    break;
+                case "property":
+                    writeGeolocation(i, green, addresses, writer);
+                    break;
+                case "personal":
+                    writeGeolocation(i, blue, addresses, writer);
+                    break;
+                case "inchoate":
+                    writeGeolocation(i, yellow, addresses, writer);
+                    break;
+                case "statutory":
+                    writeGeolocation(i, purple, addresses, writer);
+                    break;
             }
         }
 
-        writer.println("" +
-                // Google's address to cap off the pair list
-                "        new google.maps.LatLng(37.4228775, -122.085133)\n" +
+        red.append("        new google.maps.LatLng(37.782992, -122.442112)\n" +
                 "    ];\n" +
                 "}\n");
+        green.append("        new google.maps.LatLng(37.782992, -122.442112)\n" +
+                "    ];\n" +
+                "}\n");
+        blue.append("        new google.maps.LatLng(37.782992, -122.442112)\n" +
+                "    ];\n" +
+                "}\n");
+        yellow.append("        new google.maps.LatLng(37.782992, -122.442112)\n" +
+                "    ];\n" +
+                "}\n");
+        purple.append("        new google.maps.LatLng(37.782992, -122.442112)\n" +
+                "    ];\n" +
+                "}\n");
+
+        writer.println(red.toString() + "\n");
+        writer.println(green.toString() + "\n");
+        writer.println(blue.toString() + "\n");
+        writer.println(yellow.toString() + "\n");
+        writer.println(purple.toString() + "\n");
 
         StringBuilder ticker = new StringBuilder();
         for (String headline : headlines) {
@@ -121,5 +157,25 @@ public class Launcher {
 
         writer.print("var tickerText = \"" + ticker.toString().replace("\"", "\\\"").toUpperCase() + "\";");
         writer.close();
+    }
+
+    private static void writeGeolocation(int index, StringBuilder color, List<List<String>> addresses, PrintWriter writer) throws IOException {
+        for (int j = 0; j < addresses.get(index).size(); j++) {
+            String request = Request.Get("https://maps.googleapis.com/maps/api/geocode/json?address="
+                    + addresses.get(index).get(j).replace(" ", "+") +
+                    "&key=AIzaSyB06sE1R5EMBA4ysw5m-Gmk3PSlnenKaYE")
+                    .connectTimeout(1000)
+                    .socketTimeout(1000)
+                    .execute().returnContent().asString();
+            Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(request);
+
+            try {
+                String lat = JsonPath.read(jsonString, "results[0].geometry.location.lat").toString();
+                String lng = JsonPath.read(jsonString, "results[0].geometry.location.lng").toString();
+                color.append("        new google.maps.LatLng(" + lat + ", " + lng + "),\n");
+            } catch (PathNotFoundException e) {
+                // Do something if the address fails?
+            }
+        }
     }
 }
