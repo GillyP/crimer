@@ -1,0 +1,58 @@
+@relation CRIMER
+
+@attribute text string
+@attribute class {personal,property,inchoate,statutory,financial}
+
+'Incestuous relationship leads to 4 deaths spanning 3 states', personal
+'Man accused of kidnapping teens charged with rape', personal
+'Police to discuss arrest of arson suspect following fatal fire', personal
+'Students charged with assault', personal
+'9 children in protective custody, man arrested for rape, child abuse', personal
+'Police arrest woman on assault-and-battery charge', personal
+'Fire that damages storage facility determined to be arson blaze', personal
+'Father who threw baby off roof now only faces child abuse charges', personal
+'Man arrested for domestic abuse', personal
+'Teen charged with raping 2 juveniles at holiday party', personal
+
+'Brazen burglary suspects steal $14000 worth of jewelry from elderly couple', property
+'Spokane mother finds out thieves got through three padlocks to steal property', property
+'City introduces Neighborhood Champion program to help reduce property crime', property
+'Man's dashboard camera lands him in jail after police watch burglary', property
+'Arrest Closes Several Property Crime Investigations throughout the Prairies', property
+'Man steals SUV, uses it during burglary', property
+'Auto theft task force arrests duo', property
+'3 dead after police chase, crash following gun shop burglary', property
+'Three charged with arson-related charges', property
+
+'Man Locked Up After Attempted Robbery', inchoate
+'Port St. Lucie Burger King robbery attempt thwarted', inchoate
+'West Bank Mosque Hit With Attempted Arson in Possible Hate Crime', inchoate
+'Two of seven sentenced for conspiring drug operation', inchoate
+'Three Held for \'Conspiring to Kill\' UP Shia Waqf Board Chairman', inchoate
+'Suspect arrested in Ventura robbery attempt', inchoate
+'2 Charged with Aiding and Abetting in February Murder of St. Cloud Man', inchoate
+'Wife held on charge of abetting man\'s suicide', inchoate
+'College principal\, lecturer booked for abetting suicide of student', inchoate
+'Ex-MP Mathew Lempurkel charged with plotting to murder police officer', inchoate
+
+'Babysitter arrested for drunk driving crash', statutory
+'Man sentenced for being felon in possession of a gun', statutory
+'Man arrested for 5th DWI following crash', statutory
+'Deputies arrest seven on drug charges', statutory
+'Man arrested for possession of \'weapon of mass destruction\'', statutory
+'Man with four DUI arrests gets 24 years in prison after fatal crash', statutory
+'Three arrested after drug raid', statutory
+'Iowa teacher arrested for public intoxication at school', statutory
+'Scientist faces DUI charges following crash', statutory
+'District clerk faces DWI/open container charges', statutory
+
+'Nurse anesthetist indicted on tax evasion charges', financial
+'Jury finds former beauty queen guilty on new fraud counts', financial
+'HSBC brings in AI to help spot money laundering', financial
+'Deputies arrest woman for fraud, other financial crimes', financial
+'Ex-Congressman convicted of financial crimes', financial
+'\'He cost taxpayers £10m\'': tax fugitive Michael Voudouri arrested in Cyprus', financial
+'GlaxoSmithKline chiefs '\confess to bribing Chinese doctors\'', financial
+'Ex-UBS traders charged over Libor rigging', financial
+'Jeweller to the stars flees as India seethes over bank fraud', financial
+'India seeks to shut the gates as 31 loan defaulters flee the country,' financial
