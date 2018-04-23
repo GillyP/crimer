@@ -1,5 +1,3 @@
-var map, heatmap;
-
 var financeGradient = [
     'rgba(63, 0, 0, 0)',
     'rgba(127, 0, 0, 1)',
@@ -75,6 +73,8 @@ var propertyGradient = [
     'rgba(255, 0, 0, 1)'
 ];
 
+var map;
+
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
@@ -113,17 +113,12 @@ function initMap() {
     });
 }
 
-
 function toggleHeatmap() {
-    heatmap.setMap(heatmap.getMap() ? null : map);
-}
-
-function changeRadius() {
-    heatmap.set('radius', heatmap.get('radius') ? null : 20);
-}
-
-function changeOpacity() {
-    heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
+    statutoryHeatMap.setMap(statutoryHeatMap.getMap() ? null : map);
+    inchoateHeatMap.setMap(inchoateHeatMap.getMap() ? null : map);
+    personalHeatMap.setMap(personalHeatMap.getMap() ? null : map);
+    financeHeatMap.setMap(financeHeatMap.getMap() ? null : map);
+    propertyHeatMap.setMap(propertyHeatMap.getMap() ? null : map);
 }
 
 document.getElementById("scrolltext").innerHTML = tickerText;
