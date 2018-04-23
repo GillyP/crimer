@@ -10,6 +10,7 @@ import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
+import net.minidev.json.JSONArray;
 import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
@@ -55,29 +56,37 @@ public class Parser {
 
         location = location.replace(" ", "%20");
 
-        String URL = "https://newsapi.org/v2/everything?q=" +
-                "%22" + location + "%22%20" +
-                // words associated with crime
-                "AND%20(crime%20OR%20arson%20OR%20murder%20OR%20rape%20OR%20%22grand%20theft%20auto%22%20OR%20prostitution%20" +
-                "OR%20theft%20OR%20%22child%20abuse%22%20OR%20%22domestic%20abuse%22%20OR%20conspiracy%20OR%20solicit%20OR%20" +
-                "solicitation%20OR%20dui%20OR%20dwi%20OR%20%22alcohol%20to%20minors%22%20OR%20breathalyzer%20OR%20%22refusing%20" +
-                "to%20perform%22%20OR%20%22refuse%20to%20perform%22%20OR%20blackmail%20OR%20embezzlement%20OR%20cybercrime%20OR%20" +
-                "fraud%20OR%20%22money%20laundering%22%20OR%20%22tax%20evasion%22%20OR%20%22drug%20possession%22%20OR%20%22drug%20" +
-                "manufacturing%22%20OR%20trafficking%20OR%20%22owi%22%20OR%20%22reckless%20driving%22%20OR%20%22driving%20on%20a%20" +
-                "suspended%20license%22%20OR%20%22hit-and-run%22%20OR%20%22driving%20on%20a%20revoked%20license%22%20OR%20%22public%20" +
-                "intoxication%22%20OR%20%22aiding%20and%20abetting%22%20OR%20homicide%20OR%20manslaughter%20OR%20assault%20OR%20" +
-                "battery%20OR%20larsony%20OR%20%22hate%20crime%22%20OR%20vandalism%20OR%20perjury%20OR%20trespass%20OR%20speeding%20" +
-                "OR%20%22breaking%20and%20entering%22%20OR%20%22child%20porn%22%20OR%20molest%20OR%20%22sexual%20assault%22)" +
-                "&from=" + date +
-                "&sortBy=relevancy" +
-                "&language=en" +
-                "&pageSize=100" +
-                "&apiKey=a447b403db674cb6b07c26fc11efdcd3";
+        int pageNum = 1;
+        urls = new ArrayList<String>();
+        headlines = new ArrayList<String>();
 
-        parseJSON(Request.Get(URL)
-                .connectTimeout(1000)
-                .socketTimeout(1000)
-                .execute().returnContent().asString());
+        do {
+            String URL = "https://newsapi.org/v2/everything?q=" +
+                    "%22" + location + "%22%20" +
+                    // words associated with crime
+                    "AND%20(crime%20OR%20arson%20OR%20murder%20OR%20rape%20OR%20%22grand%20theft%20auto%22%20OR%20prostitution%20" +
+                    "OR%20theft%20OR%20%22child%20abuse%22%20OR%20%22domestic%20abuse%22%20OR%20conspiracy%20OR%20solicit%20OR%20" +
+                    "solicitation%20OR%20dui%20OR%20dwi%20OR%20%22alcohol%20to%20minors%22%20OR%20breathalyzer%20OR%20%22refusing%20" +
+                    "to%20perform%22%20OR%20%22refuse%20to%20perform%22%20OR%20blackmail%20OR%20embezzlement%20OR%20cybercrime%20OR%20" +
+                    "fraud%20OR%20%22money%20laundering%22%20OR%20%22tax%20evasion%22%20OR%20%22drug%20possession%22%20OR%20%22drug%20" +
+                    "manufacturing%22%20OR%20trafficking%20OR%20%22owi%22%20OR%20%22reckless%20driving%22%20OR%20%22driving%20on%20a%20" +
+                    "suspended%20license%22%20OR%20%22hit-and-run%22%20OR%20%22driving%20on%20a%20revoked%20license%22%20OR%20%22public%20" +
+                    "intoxication%22%20OR%20%22aiding%20and%20abetting%22%20OR%20homicide%20OR%20manslaughter%20OR%20assault%20OR%20" +
+                    "battery%20OR%20larsony%20OR%20%22hate%20crime%22%20OR%20vandalism%20OR%20perjury%20OR%20trespass%20OR%20speeding%20" +
+                    "OR%20%22breaking%20and%20entering%22%20OR%20%22child%20porn%22%20OR%20molest%20OR%20%22sexual%20assault%22)" +
+                    "&from=" + date +
+                    "&sortBy=relevancy" +
+                    "&language=en" +
+                    "&pageSize=100" +
+                    "&page=" + pageNum +
+                    "&apiKey=a447b403db674cb6b07c26fc11efdcd3";
+
+            parseJSON(Request.Get(URL)
+                    .connectTimeout(1000)
+                    .socketTimeout(1000)
+                    .execute().returnContent().asString());
+            pageNum++;
+        } while (pageNum <= ((numArticles / 99) + 1) && pageNum <= 10);
 
         extractAddresses();
     }
@@ -100,8 +109,8 @@ public class Parser {
      */
     private void parseJSON(String jsonInput) {
         Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(jsonInput);
-        urls = JsonPath.read(jsonString, "$..url");
-        headlines = JsonPath.read(jsonString, "$..title");
+        urls.addAll(JsonPath.read(jsonString, "$..url"));
+        headlines.addAll(JsonPath.read(jsonString, "$..title"));
         numArticles = JsonPath.read(jsonString, "$.totalResults");
     }
 
