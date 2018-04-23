@@ -98,24 +98,19 @@ public class Launcher extends Application {
         StringBuilder purple = new StringBuilder();
 
         red.append("function getRedPoints() {\n" +
-                "    return [\n" +
-                "        new google.maps.LatLng(latCoord, longCoord),\n");
+                "    return [\n");
 
         green.append("function getGreenPoints() {\n" +
-                "    return [\n" +
-                "        new google.maps.LatLng(latCoord, longCoord),\n");
+                "    return [\n");
 
         blue.append("function getBluePoints() {\n" +
-                "    return [\n" +
-                "        new google.maps.LatLng(latCoord, longCoord),\n");
+                "    return [\n");
 
         yellow.append("function getYellowPoints() {\n" +
-                "    return [\n" +
-                "        new google.maps.LatLng(latCoord, longCoord),\n");
+                "    return [\n");
 
         purple.append("function getPurplePoints() {\n" +
-                "    return [\n" +
-                "        new google.maps.LatLng(latCoord, longCoord),\n");
+                "    return [\n");
 
         for (int i = 0; i < classifications.size(); i++) {
             switch (classifications.get(i)) {
