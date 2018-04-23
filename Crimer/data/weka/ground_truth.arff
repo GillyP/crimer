@@ -1,58 +1,209 @@
-@relation CRIMER
+@relation crimer
 
-@attribute text string
-@attribute class {personal,property,inchoate,statutory,financial}
+%@ATTRIBUTE text string
+@ATTRIBUTE crimetype {personal,property,inchoate,statutory,financial}
+@ATTRIBUTE class {personal,property,inchoate,statutory,financial}
 
-'Incestuous relationship leads to 4 deaths spanning 3 states', personal
-'Man accused of kidnapping teens charged with rape', personal
-'Police to discuss arrest of arson suspect following fatal fire', personal
-'Students charged with assault', personal
-'9 children in protective custody, man arrested for rape, child abuse', personal
-'Police arrest woman on assault-and-battery charge', personal
-'Fire that damages storage facility determined to be arson blaze', personal
-'Father who threw baby off roof now only faces child abuse charges', personal
-'Man arrested for domestic abuse', personal
-'Teen charged with raping 2 juveniles at holiday party', personal
+@DATA
 
-'Brazen burglary suspects steal $14000 worth of jewelry from elderly couple', property
-'Spokane mother finds out thieves got through three padlocks to steal property', property
-'City introduces Neighborhood Champion program to help reduce property crime', property
-'Man's dashboard camera lands him in jail after police watch burglary', property
-'Arrest Closes Several Property Crime Investigations throughout the Prairies', property
-'Man steals SUV, uses it during burglary', property
-'Auto theft task force arrests duo', property
-'3 dead after police chase, crash following gun shop burglary', property
-'Three charged with arson-related charges', property
-
-'Man Locked Up After Attempted Robbery', inchoate
-'Port St. Lucie Burger King robbery attempt thwarted', inchoate
-'West Bank Mosque Hit With Attempted Arson in Possible Hate Crime', inchoate
-'Two of seven sentenced for conspiring drug operation', inchoate
-'Three Held for \'Conspiring to Kill\' UP Shia Waqf Board Chairman', inchoate
-'Suspect arrested in Ventura robbery attempt', inchoate
-'2 Charged with Aiding and Abetting in February Murder of St. Cloud Man', inchoate
-'Wife held on charge of abetting man\'s suicide', inchoate
-'College principal\, lecturer booked for abetting suicide of student', inchoate
-'Ex-MP Mathew Lempurkel charged with plotting to murder police officer', inchoate
-
-'Babysitter arrested for drunk driving crash', statutory
-'Man sentenced for being felon in possession of a gun', statutory
-'Man arrested for 5th DWI following crash', statutory
-'Deputies arrest seven on drug charges', statutory
-'Man arrested for possession of \'weapon of mass destruction\'', statutory
-'Man with four DUI arrests gets 24 years in prison after fatal crash', statutory
-'Three arrested after drug raid', statutory
-'Iowa teacher arrested for public intoxication at school', statutory
-'Scientist faces DUI charges following crash', statutory
-'District clerk faces DWI/open container charges', statutory
-
-'Nurse anesthetist indicted on tax evasion charges', financial
-'Jury finds former beauty queen guilty on new fraud counts', financial
-'HSBC brings in AI to help spot money laundering', financial
-'Deputies arrest woman for fraud, other financial crimes', financial
-'Ex-Congressman convicted of financial crimes', financial
-'\'He cost taxpayers £10m\'': tax fugitive Michael Voudouri arrested in Cyprus', financial
-'GlaxoSmithKline chiefs '\confess to bribing Chinese doctors\'', financial
-'Ex-UBS traders charged over Libor rigging', financial
-'Jeweller to the stars flees as India seethes over bank fraud', financial
-'India seeks to shut the gates as 31 loan defaulters flee the country,' financial
+personal, personal, 'Incestuous relationship leads to 4 deaths spanning 3 states'
+personal, personal, 'Man accused of kidnapping teens charged with rape'
+personal, personal, 'Police to discuss arrest of arson suspect following fatal fire'
+personal, personal, 'Students charged with assault'
+personal, personal, '9 children in protective custody, man arrested for rape, child abuse'
+personal, personal, 'Police arrest woman on assault-and-battery charge'
+personal, personal, 'Fire that damages storage facility determined to be arson blaze'
+personal, personal, 'Father who threw baby off roof now only faces child abuse charges'
+personal, personal, 'Man arrested for domestic abuse'
+personal, personal, 'Teen charged with raping 2 juveniles at holiday party'
+personal, personal, 'Court-martial trial nears for Marine accused of rape'
+personal, personal, 'Child rape will now be treated as a criminal act'
+personal, personal, 'Decades-old unsolved sex crimes uncovered by rape kits'
+personal, personal, 'Sexual violence vastly underreported'
+personal, personal, 'India\'s image today is that of a country of crimes and rapes'
+personal, personal, '2 Gay men exonerated in 1989 rape'
+personal, personal, 'Billings rape case argued before Montana Supreme Court at MSU'
+personal, personal, 'Shocking rise in child rape cases in Kerala'
+personal, personal, 'Kathua rape case puts spotlight on crimes against women by juveniles'
+personal, personal, 'Another rape adds to protesters\' fury over Indian justice on sex crimes'
+personal, personal, 'Tagging domestic abusers is not enough, say campaigners'
+personal, personal, 'Alex Skeel\: Domestic abuse survivor was days from death'
+personal, personal, 'Man in jail for domestic abuse after woman says she was tied up at Oklahoma City apartment'
+personal, personal, 'What It\'s Like to Live With PTSD After Escaping Domestic Violence'
+personal, personal, 'Domestic Abuse\: Puerto Rico\'s Women in Crisis'
+personal, personal, 'Police arrest attempted murder suspect at Colorado Springs motel'
+personal, personal, '2 Student Murders Have Binghamton University on Edge'
+personal, personal, '25 years ago, one murder woke Britain up to the reality of violent racism'
+personal, personal, 'Finsbury park murder\: 21-year-old suspect identified by police'
+personal, personal, 'Man\'s shooting death ends four-month murder-free stretch'
+personal, personal, 'Police investigate murder-suicide in Tulsa'
+personal, personal, 'millions gripped by Kim Wall murder trial'
+personal, personal, 'Kinston Police investigating death of man in vehicle as a murder'
+personal, personal, 'Police seek attacker in hate-crime NYC subway assault'
+personal, personal, 'Sexual assault reported during Penn State\'s Blue-White weekend'
+personal, personal, 'Lawsuit, criminal charges allege massage clinic sexual assault'
+personal, personal, 'Sexual assault\: Finding the courage to speak about it'
+personal, personal, 'Three city workers busted in separate assault incidents across NYC'
+personal, personal, 'Cops\: 4 charged after box-cutter assault in New Cassel'
+personal, personal, 'Roseburg man arrested for assault warrant'
+personal, personal, 'Jury selection begins for Decatur man in child sex assault case'
+property, property, 'Brazen burglary suspects steal $14000 worth of jewelry from elderly couple'
+property, property, 'Spokane mother finds out thieves got through three padlocks to steal property'
+property, property, 'City introduces Neighborhood Champion program to help reduce property crime'
+property, property, 'Man\'s das1hboard camera lands him in jail after police watch burglary'
+property, property, 'Arrest Closes Several Property Crime Investigations throughout the Prairies'
+property, property, 'Man steals SUV, uses it during burglary'
+property, property, 'Police arrest man in connection with Hither Green burglary'
+property, property, 'Teen accused of aggravated burglary, theft charges as an adult'
+property, property, 'Hoboken home burglary foiled by officers, police say'
+property, property, 'Two charged in Cambria burglary'
+property, property, 'Two men arrested in March convenience store burglary, sheriff says'
+property, property, 'Auto theft task force arrests duo'
+property, property, '3 dead after police chase, crash following gun shop burglary'
+property, property, 'Three charged with arson-related charges'
+property, property, 'Judge breaks into neighbour\'s home steals her underwear'
+property, property, '4 men charged in Hattiesburg auto burglary sting'
+property, property, 'Suspect sought in Fortuna restaurant burglary'
+property, property, 'Four Masked Burglars Steal Jade and Gold Artifacts From Museum'
+property, property, 'Over $5000 Stolen In Evening Home Burglary Off Sheridan'
+property, property, 'TPD looking for suspect involved in gas station burglary'
+property, property, 'City Heights fire determined to be arson'
+property, property, 'Sheriff\: Possible arson investigated in Oklahoma wildfire'
+property, property, 'Centralia Man Gets 20 Year Prison Term for Aggravated Arson'
+property, property, 'Assisted living home resident charged with arson in December fire'
+property, property, 'Teen cited for arson in Waterloo school fire'
+property, property, 'Possible Arson in Oklahoma Wildfire'
+property, property, 'Firebugs torch vacant Conowingo house\; fourth arson in string'
+property, property, 'Suspected arson fire destroys South Kelso home'
+property, property, 'Fire marshal arrests two women for arson'
+property, property, 'Daytona man shot by deputies gets 25 years for carjacking, auto theft'
+property, property, 'Group involved in El Paso auto theft ring sentenced'
+property, property, 'Two North Vernon men arrested on charges of auto theft'
+property, property, 'South Orange Police Charge Man with Attempted Auto Theft'
+property, property, 'Convicted felon charged with auto theft in Fruitland Park'
+property, property, 'Auto theft task force arrests duo'
+property, property, 'Deputies arrest two on preliminary charges of auto theft'
+property, property, 'Suspect in beer truck theft arrested wearing American flag shorts'
+property, property, 'Suspect sought for auto-theft, assault on elderly victim'
+property, property, 'Meacham man jailed for auto theft'
+property, property, 'Former Trussville fire chief arrested on ethics, auto theft charges'
+inchoate, inchoate, 'Man Locked Up After Attempted Robbery'
+inchoate, inchoate, 'Port St. Lucie Burger King robbery attempt thwarted'
+inchoate, inchoate, 'West Bank Mosque Hit With Attempted Arson in Possible Hate Crime'
+inchoate, inchoate, 'Two of seven sentenced for conspiring drug operation'
+inchoate, inchoate, 'Three Held for \'Conspiring to Kill\' UP Shia Waqf Board Chairman'
+inchoate, inchoate, 'Suspect arrested in Ventura robbery attempt'
+inchoate, inchoate, '2 Charged with Aiding and Abetting in February Murder of St. Cloud Man'
+inchoate, inchoate, 'Wife held on charge of abetting man\'s suicide'
+inchoate, inchoate, 'College principal, lecturer booked for abetting suicide of student'
+inchoate, inchoate, 'Ex-MP Mathew Lempurkel charged with plotting to murder police officer'
+inchoate, inchoate, 'Waupun man convicted of meth conspiracy'
+inchoate, inchoate, 'These states want to make planning a pipeline protest a crime'
+inchoate, inchoate, 'Genovese crime family associate convicted of racketeering'
+inchoate, inchoate, 'Phantom Secure Takedown\: Selling Unhackable Phones to Drug Dealers'
+inchoate, inchoate, 'District Judge Generally Rejects Plea Bargaining'
+inchoate, inchoate, '8 arrested after major drug chain busted in Raleigh County'
+inchoate, inchoate, 'Murder conspiracy charge goes forward'
+inchoate, inchoate, '3 Kansas men found guilty of plot to bomb Garden City Muslim'
+inchoate, inchoate, 'The Department of Justice Thinks That Collusion Is a Crime'
+inchoate, inchoate, 'Freeze on illegal lobster magnate\'s multi-millions'
+inchoate, inchoate, 'Jury hangs in conspiracy case of East Bay roommates'
+inchoate, inchoate, 'Louisiana would rather criminalize protest than offend Big Oil'
+inchoate, inchoate, 'Minor event organizer alleges crimes by Attorney General\'s Office'
+inchoate, inchoate, 'East Grand Forks man accused of conspiring to sell drugs with others'
+inchoate, inchoate, 'Two New York men guilty of Linden cocaine charges'
+inchoate, inchoate, 'Conspiracy to conceal federal campaign finance violations'
+inchoate, inchoate, 'Chinese politician accused of conspiracy admits to graft'
+inchoate, inchoate, 'Four sentenced in Bismarck for crimes related to sex trafficking'
+inchoate, inchoate, 'Bellevue resident indicted in drug conspiracy'
+inchoate, inchoate, 'Two Snow Hill men sentenced in Goldsboro armed robberies'
+inchoate, inchoate, 'Illinois man charged with aiding and abetting murder, assault, arson'
+inchoate, inchoate, 'Rochester man pleads not guilty to drug and assault crimes'
+inchoate, inchoate, 'War Crimes Prosecutions Delayed, European Commission Warns'
+inchoate, inchoate, 'Ex-wife\: Shooting tied to alleged molestation'
+inchoate, inchoate, 'The High Hurdle for Aiding and Abetting Unlawful Attacks in Yemen'
+inchoate, inchoate, 'Private sector corruption rampant'
+inchoate, inchoate, 'Iran detains ex-prosecutor convicted in 2009 torture case'
+inchoate, inchoate, 'Trafficking arrests made involving guns bought at local stores'
+inchoate, inchoate, '3 Kenyan terror suspects sneak to Somali to join Al-Shabaab'
+inchoate, inchoate, 'Government Needs To Go All The Way In Probing \'Secret Agreements\''
+statutory, statutory, 'Babysitter arrested for drunk driving crash'
+statutory, statutory, 'Man sentenced for being felon in possession of a gun'
+statutory, statutory, 'Man arrested for 5th DWI following crash'
+statutory, statutory, 'Deputies arrest seven on drug charges'
+statutory, statutory, 'Man arrested for possession of \'weapon of mass destruction\''
+statutory, statutory, 'Man with four DUI arrests gets 24 years in prison after fatal crash'
+statutory, statutory, 'Three arrested after drug raid'
+statutory, statutory, 'Iowa teacher arrested for public intoxication at school'
+statutory, statutory, 'Scientist faces DUI charges following crash'
+statutory, statutory, 'District clerk faces DWI/open container charges'
+statutory, statutory, 'State Senate bill would increase penalties for repeat DUI offenders'
+statutory, statutory, 'Repeat DUI offender hits, kills young couple'
+statutory, statutory, 'Visalia police check bars, make DUI arrests on Saturday'
+statutory, statutory, 'DUI Checkpoint Nets 2 Arrests'
+statutory, statutory, 'Santa Rosa DUI checkpoint leads to one drunken driving arrest'
+statutory, statutory, 'DUI Suspect Crashes Into Street Light'
+statutory, statutory, 'Enderlin man facing fleeing, DUI charges after chase'
+statutory, statutory, 'Quarterback Steven Duncan arrested for DUI'
+statutory, statutory, 'Two Accused of Drug Crimes Charged'
+statutory, statutory, 'Four charged with drug crimes by Heflin police'
+statutory, statutory, '2 officers indicted for federal drug crimes, robbery'
+statutory, statutory, '3 men arrested in drug bust at home in Vincent, Ohio'
+statutory, statutory, 'Police Chief Recalls Drug Bust During Hearing'
+statutory, statutory, 'Colorado governor pardons 9 convicted of drug crimes'
+statutory, statutory, 'Mobile drug raid sees 10 arrested, guns seized, store shut down'
+statutory, statutory, 'Drug crimes down, DUIs up in Pismo Beach'
+statutory, statutory, 'Federal data shows increase in sex, drug crimes on campus'
+statutory, statutory, 'St. Peter man charged with drug crimes'
+statutory, statutory, 'BHC police arrest man accused of drug crimes'
+statutory, statutory, 'Two charged in drug arrest'
+statutory, statutory, 'Man faces drug charges after Pawtucket police raid house'
+statutory, statutory, 'Wyoming Federal Judges Sentence Seven For Drug, Firearms Crimes'
+statutory, statutory, 'Traffic stop results in drug arrests'
+statutory, statutory, 'Drug policies evolve as addiction becomes a white problem'
+statutory, statutory, 'Legislation targets money, property seized in drug crimes'
+statutory, statutory, 'AC men indicted on weapons, drug charges in December shooting'
+statutory, statutory, 'Colombian politician arrested on drug trafficking charge'
+statutory, statutory, '2 employees, 8 students charged in William & Mary drug bust'
+statutory, statutory, 'Sheriff department annual report\: Drug arrests on rise'
+statutory, statutory, '8 arrested after major drug chain busted in Raleigh County'
+financial, financial, 'Nurse anesthetist indicted on tax evasion charges'
+financial, financial, 'Jury finds former beauty queen guilty on new fraud counts'
+financial, financial, 'HSBC brings in AI to help spot money laundering'
+financial, financial, 'Deputies arrest woman for fraud, other financial crimes' 
+financial, financial, 'Ex-Congressman convicted of financial crimes'
+financial, financial, '\'He cost taxpayers £10m\' tax fugitive Michael Voudouri arrested in Cyprus'
+financial, financial, 'GlaxoSmithKline chiefs \'confess to bribing Chinese doctors\''
+financial, financial, 'Ex-UBS traders charged over Libor rigging'
+financial, financial, 'Jeweller to the stars flees as India seethes over bank fraud'
+financial, financial, 'India seeks to shut the gates as 31 loan defaulters flee the country' 
+financial, financial, 'Petoskey woman accused of extensive financial scam'
+financial, financial, 'Plainfield tax preparers charged with filing false returns'
+financial, financial, 'EU suspects tax fraud at China\'s new gateway to Europe'
+financial, financial, 'Salinas woman who helped steal $7.5m through tax fraud'
+financial, financial, 'Goshen couple plead guilty to tax fraud charges'
+financial, financial, 'Cybercriminals now targeting tax pros to cash in on fraudulent returns'
+financial, financial, 'Springfield Woman Off To Prison For Tax Fraud Scheme'
+financial, financial, 'Bookkeeper Pleads Guilty To $24 Million Tax Fraud Scheme'
+financial, financial, 'Let these tax fraud stories dissuade you from trying to beat the IRS'
+financial, financial, 'San Jose man arrested for alleged embezzlement scheme'
+financial, financial, 'Police\: Former employee embezzled from Lansing food pantry'
+financial, financial, 'Wichita church reports embezzlement'
+financial, financial, 'Man sentenced in $202000 Social Security embezzlement'
+financial, financial, 'Ex-Ralph Lauren manager gets 20 days for embezzlement'
+financial, financial, 'Cattleman charged with embezzlement in Augusta County'
+financial, financial, 'Attorney accused of embezzlement, perjury'
+financial, financial, 'PTO president faces embezzlement charges'
+financial, financial, 'Granddaughter of Mary McLeod Bethune accused of embezzlement'
+financial, financial, 'Maltese politicians face calls for money laundering inquiry'
+financial, financial, 'Corruption Currents\: UK Refuses Raids in Money-Laundering Probe'
+financial, financial, 'Caixabank in Mafia money laundering probe\: report'
+financial, financial, 'PdVSA Bribery Probe Yields Money-Laundering Guilty Plea'
+financial, financial, 'NIA wing to probe money laundering by Naxals'
+financial, financial, 'Latvian bank asks US to hold off money laundering sanctions'
+financial, financial, 'The Business Deals That Could Imperil Trump'
+financial, financial, 'Montenegro Opposition Leader Tried for Money-Laundering'
+financial, financial, 'Tackling money-laundering in NZ\: More needs to be done'
+financial, financial, 'Taiwan Moves to Capture Bitcoin Under Money Laundering Laws'
+financial, financial, 'Four in the running to be new anti-money laundering kingpin'
+financial, financial, 'Taiwan Central Bank Proposes Money Laundering Rules for Bitcoin'
