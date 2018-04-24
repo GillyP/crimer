@@ -39,13 +39,7 @@ public class Launcher extends Application {
         // Use the Java look and feel
         try {
             UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | InstantiationException | IllegalAccessException e) {
             e.printStackTrace();
         }
 
@@ -164,7 +158,7 @@ public class Launcher extends Application {
         writer.print("var tickerText = \"" + ticker.toString().replace("\"", "\\\"").toUpperCase() + "\";");
         writer.close();
 
-        launch();
+        launchCrimer();
     }
 
     private static void writeGeolocation(int index, StringBuilder color, List<List<String>> addresses, PrintWriter writer) throws IOException {
@@ -172,23 +166,27 @@ public class Launcher extends Application {
             try {
                 String request = Request.Get("https://maps.googleapis.com/maps/api/geocode/json?address="
                         + addresses.get(index).get(j).replace(" ", "+") +
-                        "&key=AIzaSyB06sE1R5EMBA4ysw5m-Gmk3PSlnenKaYE")
+                        "&key=AIzaSyDIiq44cG4G2MfbsOG3ZBLp0Shz8XEjuQA")
                         .connectTimeout(1000)
                         .socketTimeout(1000)
                         .execute().returnContent().asString();
                 Object jsonString = Configuration.defaultConfiguration().jsonProvider().parse(request);
-                String lat = JsonPath.read(jsonString, "results[0].geometry.location.lat").toString();
-                String lng = JsonPath.read(jsonString, "results[0].geometry.location.lng").toString();
-                color.append("        new google.maps.LatLng(" + lat + ", " + lng + "),\n");
+                List<Double> lat = JsonPath.read(jsonString, "results[*].geometry.location.lat");
+                List<Double> lng = JsonPath.read(jsonString, "results[*].geometry.location.lng");
+                for (int i = 0; i < lat.size(); i++) {
+                    Double currentLat = lat.get(i);
+                    Double currentLng = lng.get(i);
+                    color.append("        new google.maps.LatLng(" + currentLat + ", " + currentLng + "),\n");
+                }
             } catch (IllegalArgumentException | PathNotFoundException e) {
                 // Do something if the address fails?
             }
         }
     }
 
-//    private static void launchCrimer() {
-//        launch();
-//    }
+    private static void launchCrimer() {
+        launch();
+    }
 
     @Override
     public void start(Stage primaryStage) {
