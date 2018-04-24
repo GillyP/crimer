@@ -11,4 +11,3 @@ News
 ----
 +Initial project begun on 01-24-2018  
 +First commits beyond creation of repository on 01-28-2018  
-+Main sprint in week of 04-22-2018  
