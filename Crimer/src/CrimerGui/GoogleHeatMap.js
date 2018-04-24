@@ -105,9 +105,3 @@ function toggleHeatmap() {
 }
 
 document.getElementById("scrolltext").innerHTML = tickerText;
-
-
-for (var i = 0; i < results.length; i++) {
-    results[i].geometry.location.lat;
-}
-
