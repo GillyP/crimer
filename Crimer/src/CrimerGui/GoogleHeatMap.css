@@ -22,7 +22,7 @@ html, body {
 
 #legend{
     position: absolute;
-    top: 650px;
+    top: 300px;
     z-index: 6;
 }
 #togglebutton {

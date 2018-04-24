@@ -1,35 +1,58 @@
 var financeGradient = [
-    'rgba(0, 0, 0, 0)',
-    'rgba(127, 0, 0, 1)',
-    'rgba(191, 0, 0, 1)',
+    'rgba(0, 255, 0, 0)',
+    'rgba(0, 255, 0, 1)',
+    'rgba(63, 191, 0, 1)',
+    'rgba(127, 127, 0, 1)',
+    'rgba(191, 63, 0, 1)',
     'rgba(255, 0, 0, 1)'
 ];
 
 var inchoateGradient = [
-    'rgba(0, 0, 0, 0)',
-    'rgba(128, 128, 0, 1)',
-    'rgba(191, 191, 0, 1)',
+    'rgba(255, 0, 255, 0)',
+    'rgba(255, 0, 255, 1)',
+    'rgba(255, 0, 191, 1)',
+    'rgba(255, 0, 127, 1)',
+    'rgba(255, 0, 63, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 63, 0, 1)',
+    'rgba(255, 127, 0, 1)',
+    'rgba(255, 191, 0, 1)',
     'rgba(255, 255, 0, 1)'
 ];
 
 var statutoryGradient = [
-    'rgba(0, 0, 0, 0)',
-    'rgba(128, 0, 128, 1)',
-    'rgba(191, 0, 191, 1)',
+    'rgba(255, 255, 0, 0)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 191, 0, 1)',
+    'rgba(255, 127, 0, 1)',
+    'rgba(255, 63, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 63, 1)',
+    'rgba(255, 0, 127, 1)',
+    'rgba(255, 0, 191, 1)',
     'rgba(255, 0, 255, 1)'
 ];
 
 var personalGradient = [
-    'rgba(0, 0, 0, 0)',
-    'rgba(0, 0, 128, 1)',
-    'rgba(0, 0, 191, 1)',
+    'rgba(255, 255, 0, 0)',
+    'rgba(255, 255, 0, 1)',
+    'rgba(255, 191, 0, 1)',
+    'rgba(255, 127, 0, 1)',
+    'rgba(255, 63, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(191, 0, 63, 1)',
+    'rgba(127, 0, 127, 1)',
+    'rgba(63, 0, 191, 1)',
     'rgba(0, 0, 255, 1)'
 ];
 
 var propertyGradient = [
-    'rgba(0, 0, 0, 0)',
-    'rgba(0, 128, 0, 1)',
-    'rgba(0, 191, 0, 1)',
+    'rgba(255, 0, 0, 0)',
+    'rgba(255, 0, 0, 1)',
+    'rgba(191, 63, 0, 1)',
+    'rgba(127, 127, 0, 1)',
+    'rgba(63, 191, 0, 1)',
     'rgba(0, 255, 0, 1)'
 ];
 
@@ -38,7 +61,7 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
-        center: {lat: 30.4515, lng: -91.1871}, //CHANGE ME
+        center: {lat: 30.4514, lng: -91.1871}, //CHANGE ME
         mapTypeId: 'satellite'
     });
 
@@ -82,4 +105,3 @@ function toggleHeatmap() {
 }
 
 document.getElementById("scrolltext").innerHTML = tickerText;
-
