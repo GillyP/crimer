@@ -61,7 +61,7 @@ var map;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,
-        center: {lat: 30.4514, lng: -91.1871}, //CHANGE ME
+        center: {lat: 30.4514, lng: -91.1871},
         mapTypeId: 'satellite'
     });
 
@@ -100,6 +100,12 @@ function initMap() {
     propertyHeatMap.set('radius', 50);
     inchoateHeatMap.set('radius', 50);
     financeHeatMap.set('radius', 50);
+
+    statutoryHeatMap.set('opacity', 1);
+    personalHeatMap.set('opacity', 1);
+    propertyHeatMap.set('opacity', 1);
+    inchoateHeatMap.set('opacity', 1);
+    financeHeatMap.set('opacity', 1);
 }
 
 function toggleHeatmap() {
