@@ -10,10 +10,25 @@ html, body {
     padding: 0;
 }
 
+#marquee-box{
+    opacity: 0.25;
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background: black;
+    bottom: 130px;
+    z-index: 6;
+}
+
+#legend{
+    position: absolute;
+    top: 650px;
+    z-index: 6;
+}
 #togglebutton {
     position: absolute;
-    top: 25px;
-    left: 50%;
+    top: 20px;
+    left: 47%;
     z-index: 5;
     background-color: #fff;
     text-align: center;
@@ -25,7 +40,7 @@ html, body {
     margin: 0;
     z-index: 7;
     position: absolute;
-    bottom: 110px;
+    bottom: 130px;
     width: 2000px;
     line-height: 5px;
     color: white;
@@ -35,6 +50,7 @@ html, body {
     box-sizing: border-box;
 }
 .marquee p {
+    z-index: 7;
     font-size: 25px;
     display: inline-block;
     padding-left: 100%;
