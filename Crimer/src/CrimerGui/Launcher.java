@@ -155,7 +155,8 @@ public class Launcher extends Application {
         writer.println(purple.toString());
 
         StringBuilder ticker = new StringBuilder();
-        for (Object headline : headlines) {
+        for (int i = 0; i < 25 && i < headlines.size(); i++) {
+            Object headline = headlines.get(i);
             ticker.append(headline);
             ticker.append(" · ");
         }
