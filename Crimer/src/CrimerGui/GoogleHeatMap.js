@@ -94,6 +94,12 @@ function initMap() {
         map: map,
         gradient: statutoryGradient
     });
+
+    statutoryHeatMap.set('radius', 50);
+    personalHeatMap.set('radius', 50);
+    propertyHeatMap.set('radius', 50);
+    inchoateHeatMap.set('radius', 50);
+    financeHeatMap.set('radius', 50);
 }
 
 function toggleHeatmap() {
