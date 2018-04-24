@@ -10,7 +10,6 @@ import com.jayway.jsonpath.Configuration;
 import com.jayway.jsonpath.JsonPath;
 import de.l3s.boilerpipe.BoilerpipeProcessingException;
 import de.l3s.boilerpipe.extractors.ArticleExtractor;
-import net.minidev.json.JSONArray;
 import org.apache.http.client.fluent.Request;
 
 import java.io.IOException;
