@@ -1,6 +1,7 @@
 #map {
     height: 100%;
     width: 100%;
+    margin-top: -20px;
 }
 
 html, body {
@@ -8,6 +9,7 @@ html, body {
     margin: 0;
     padding: 0;
 }
+
 #togglebutton {
     position: absolute;
     top: 30px;
@@ -19,11 +21,11 @@ html, body {
     line-height: 30px;
 }
 
-
 .marquee {
+    margin: 0;
     z-index: 7;
     position: absolute;
-    top: 70px;
+    bottom: 110px;
     width: 2000px;
     line-height: 5px;
     color: white;
