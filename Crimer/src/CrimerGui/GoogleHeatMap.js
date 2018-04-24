@@ -108,12 +108,12 @@ function initMap() {
     financeHeatMap.set('opacity', 1);
 }
 
-function toggleHeatmap() {
-    statutoryHeatMap.setMap(statutoryHeatMap.getMap() ? null : map);
-    inchoateHeatMap.setMap(inchoateHeatMap.getMap() ? null : map);
-    personalHeatMap.setMap(personalHeatMap.getMap() ? null : map);
-    financeHeatMap.setMap(financeHeatMap.getMap() ? null : map);
-    propertyHeatMap.setMap(propertyHeatMap.getMap() ? null : map);
-}
+// function toggleHeatmap() {
+//     statutoryHeatMap.setMap(statutoryHeatMap.getMap() ? null : map);
+//     inchoateHeatMap.setMap(inchoateHeatMap.getMap() ? null : map);
+//     personalHeatMap.setMap(personalHeatMap.getMap() ? null : map);
+//     financeHeatMap.setMap(financeHeatMap.getMap() ? null : map);
+//     propertyHeatMap.setMap(propertyHeatMap.getMap() ? null : map);
+// }
 
 document.getElementById("scrolltext").innerHTML = tickerText;
