@@ -6,7 +6,7 @@
 
 package Weka;
 
-import weka.classifiers.functions.MultilayerPerceptron;
+import weka.classifiers.bayes.NaiveBayesMultinomialText;
 import weka.core.Instances;
 
 import java.io.*;
@@ -63,13 +63,13 @@ public class CrimeClassifier {
 
         breader.close();
 
-        MultilayerPerceptron mp = new MultilayerPerceptron();
-        mp.buildClassifier(trainSet);
+        NaiveBayesMultinomialText nbmt = new NaiveBayesMultinomialText();
+        nbmt.buildClassifier(trainSet);
 
         Instances labeled = new Instances(testSet);
 
         for (int i = 0; i < testSet.numInstances(); i++) {
-            double clsLabel = mp.classifyInstance(testSet.instance(i));
+            double clsLabel = nbmt.classifyInstance(testSet.instance(i));
             labeled.instance(i).setClassValue(clsLabel);
         }
 
